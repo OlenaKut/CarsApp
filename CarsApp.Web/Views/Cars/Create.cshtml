@@ -1,4 +1,40 @@
-﻿@page
-@model CarsApp.Web.Views.Cars.CreateModel
-@{
-}
+﻿@model CarsApp.Web.Models.Car
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create</title>
+    <link rel="stylesheet" href="https://unpkg.com/@@picocss/pico@@latest/css/pico.classless.min.css">
+</head>
+<body>
+    <div style="margin: 50px;">
+        <h1>Add a new car</h1>
+        <form asp-controller="cars" asp-action="create">
+            <label asp-for="Make">Make</label>
+            <input asp-for="Make" />
+            <span asp-validation-for="Make"></span>
+
+            <label asp-for="Model">Model</label>
+            <input asp-for="Model" />
+            <span asp-validation-for="Model"></span>
+
+            <label asp-for="Year">Year</label>
+            <input asp-for="Year" />
+            <span asp-validation-for="Year"></span>
+
+
+            <label asp-for="Color">Color</label>
+            <input asp-for="Color" />
+            <span asp-validation-for="Color"></span>
+
+            <input type="submit" value="Create" />
+        </form>
+
+
+        <div asp-validation-summary="All"></div>
+        <a asp-controller="cars" asp-action="index">Back to main</a>
+    </div>
+</body>
+</html>

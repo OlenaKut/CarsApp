@@ -1,4 +1,4 @@
-﻿@model CarsApp.Web.Models.Car
+﻿@model CarsApp.Web.Models.Car[]
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 ﻿
@@ -17,7 +17,7 @@
             <li>@car.Make</li>
             }
         </ul>
-        <h2><a href="/Create">Add a new car</a></h2>
+        <a asp-controller="cars" asp-action="create">Add a new car</a>
     </div>
 </body>
 </html>

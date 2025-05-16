@@ -11,8 +11,4 @@
     <Compile Remove="Views\Cars\Create.cshtml.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Remove="Views\Cars\Create.cshtml" />
-  </ItemGroup>
-
 </Project>
