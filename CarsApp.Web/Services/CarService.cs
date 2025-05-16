@@ -22,5 +22,7 @@ namespace CarsApp.Web.Services
             cars.Add(car);
         }
 
+        internal void DeleteCar(int id) => cars.Remove(GetCarById(id));
     }
 }
+

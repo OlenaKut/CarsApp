@@ -30,7 +30,7 @@ namespace CarsApp.Web.Controllers
                 return View();
 
             carService.AddCar(car);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet("details/{id:int}")]
@@ -40,6 +40,13 @@ namespace CarsApp.Web.Controllers
             if (car == null)
                 return NotFound();
             return View(car);
+        }
+
+        [HttpPost("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+           carService.DeleteCar(id);
+            return RedirectToAction(nameof(Index));
         }
 
     }
