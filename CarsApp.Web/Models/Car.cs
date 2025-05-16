@@ -7,12 +7,13 @@ namespace CarsApp.Web.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Make is required")]
-        [StringLength(50, ErrorMessage = "Make cannot be longer than 25 characters")]
+        [StringLength(30, MinimumLength = 2, ErrorMessage = "Make must be 2-30 characters")]
         [Display(Name = "Car Make")]
+        [BadCar("Tesla", ErrorMessage = "This is not the best option")]
         public string Make { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Model is required")]
-        [StringLength(50, ErrorMessage = "Model cannot be longer than 20 characters")]
+        [StringLength(20, MinimumLength = 2, ErrorMessage = "Make must be 2-20 characters")]
         [Display(Name = "Car Model")]
         public string Model { get; set; } = string.Empty;
 
@@ -22,7 +23,7 @@ namespace CarsApp.Web.Models
         public int Year { get; set; }
 
         [Required(ErrorMessage = "Color is required")]
-        [StringLength(20, ErrorMessage = "Color cannot be longer than 30 characters")]
+        [StringLength(20, ErrorMessage = "Make must be 2-20 characters")]
         [Display(Name = "Car Color")]
         public string Color { get; set; } = string.Empty;
     }
