@@ -1,0 +1,33 @@
+﻿@model CarsApp.Web.Models.Car
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit</title>
+    <link rel="stylesheet" href="https://unpkg.com/@@picocss/pico@@latest/css/pico.classless.min.css">
+</head>
+<body>
+    <div style="margin: 50px;">
+        <h1>Edit car</h1>
+        <form asp-controller="cars" asp-action="edit">
+            <label asp-for="Make">Make</label>
+            <input asp-for="Make" />
+
+            <label asp-for="Model">Model</label>
+            <input asp-for="Model" />
+
+            <label asp-for="Year">Year</label>
+            <input asp-for="Year" />
+
+            <label asp-for="Color">Color</label>
+            <input asp-for="Color" />
+
+            <input type="submit" value="Create" />
+        </form>
+
+        <a asp-controller="cars" asp-action="index">Back to main</a>
+    </div>
+</body>
+</html>

@@ -15,6 +15,10 @@
             @foreach(var car in Model)
             {
             <li>@car.Make
+
+                    <a asp-controller="cars" asp-action="edit" asp-route-id="@car.Id">Edit car</a>
+
+
                     <form id="@($"deleteCar{car.Id}")" asp-controller="cars" asp-action="delete" asp-route-id="@car.Id" method="post" style="display: inline;">
                         <span onclick="if(confirm('Are you sure you want to delete this car?')) { document.getElementById('@($"deleteCar{car.Id}")').submit(); }"
                               style="cursor: pointer; color: red; text-decoration: underline;">

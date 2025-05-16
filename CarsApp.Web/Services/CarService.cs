@@ -22,6 +22,15 @@ namespace CarsApp.Web.Services
             cars.Add(car);
         }
 
+        internal void UpdateCar(Car modelCar)
+        {
+            Car updatedCar = GetCarById(modelCar.Id);
+            updatedCar.Make = modelCar.Make;
+            updatedCar.Model = modelCar.Model;
+            updatedCar.Year = modelCar.Year;
+            updatedCar.Color = modelCar.Color;
+        }
+
         internal void DeleteCar(int id) => cars.Remove(GetCarById(id));
     }
 }

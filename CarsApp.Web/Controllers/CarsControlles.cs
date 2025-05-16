@@ -42,6 +42,23 @@ namespace CarsApp.Web.Controllers
             return View(car);
         }
 
+        [HttpGet("edit/{id}")]
+        public IActionResult Edit(int id)
+        {
+            var model = carService.GetCarById(id);
+            return View(model);
+
+        }
+
+        [HttpPost("edit/{id}")]
+        public IActionResult Edit(Car car)
+        {
+            carService.UpdateCar(car);
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
         [HttpPost("delete/{id}")]
         public IActionResult Delete(int id)
         {
