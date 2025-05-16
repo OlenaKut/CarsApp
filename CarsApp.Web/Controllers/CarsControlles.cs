@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarsApp.Web.Controllers
 {
-    public class CarsControlles : Controller
+    public class CarsController : Controller
     {
         static CarService carService = new CarService();
 

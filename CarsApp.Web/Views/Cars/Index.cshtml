@@ -1,0 +1,23 @@
+﻿@model CarsApp.Web.Models.Car
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cars</title>
+    <link rel="stylesheet" href="https://unpkg.com/@@picocss/pico@@latest/css/pico.classless.min.css">
+</head>
+<body>
+    <div style="margin: 50px;">
+        <h1>Cars</h1>
+        <ul>
+            @foreach(var car in Model)
+            {
+            <li>@car.Make</li>
+            }
+        </ul>
+        <h2><a href="/Create">Add a new car</a></h2>
+    </div>
+</body>
+</html>
