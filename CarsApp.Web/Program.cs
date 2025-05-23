@@ -1,3 +1,5 @@
+using CarsApp.Web.Services;
+
 namespace CarsApp.Web
 {
     public class Program
@@ -6,6 +8,8 @@ namespace CarsApp.Web
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSingleton<CarService>();
+
             var app = builder.Build();
 
             app.MapControllers();  

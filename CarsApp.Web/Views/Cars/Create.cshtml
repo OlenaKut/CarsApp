@@ -1,40 +1,40 @@
-﻿@model CarsApp.Web.Models.Car
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@model CreateVM
 
-﻿
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Create</title>
-    <link rel="stylesheet" href="https://unpkg.com/@@picocss/pico@@latest/css/pico.classless.min.css">
-</head>
-<body>
-    <div style="margin: 50px;">
-        <h1>Add a new car</h1>
-        <form asp-controller="cars" asp-action="create">
-            <label asp-for="Make">Make</label>
-            <input asp-for="Make" />
-            <span asp-validation-for="Make"></span>
+@{
+    ViewBag.Title = "Create";
+}
+<div>
+    <h1 class="mb-4 text-primary">Add a new car</h1>
+    <form asp-controller="cars" asp-action="create">
+        <div class="mb-3">
+            <label class="form-label" asp-for="Make">Make</label>
+            <input type="text" class="form-control" asp-for="Make">
+            <span asp-validation-for="Make" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="Model">Model</label>
+            <input type="text" class="form-control" asp-for="Model">
+            <span asp-validation-for="Model" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="Year">Year</label>
+            <input type="number" class="form-control" asp-for="Year">
+            <span asp-validation-for="Year" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="Color">Color</label>
+            <input type="text" class="form-control" asp-for="Color">
+            <span asp-validation-for="Color" class="text-danger"></span>
+        </div>
+        
+        <button type="submit" value="Create" class="btn btn-primary">Submit</button>
+    </form>
 
-            <label asp-for="Model">Model</label>
-            <input asp-for="Model" />
-            <span asp-validation-for="Model"></span>
-
-            <label asp-for="Year">Year</label>
-            <input asp-for="Year" />
-            <span asp-validation-for="Year"></span>
-
-
-            <label asp-for="Color">Color</label>
-            <input asp-for="Color" />
-            <span asp-validation-for="Color"></span>
-
-            <input type="submit" value="Create" />
-        </form>
-
-
-        @*<div asp-validation-summary="All"></div>*@
-        <a asp-controller="cars" asp-action="index">Back to main</a>
+    <button type="button" class="btn btn-outline-info mt-3"><a asp-controller="cars" asp-action="index" class="text-info text-decoration-none">Back to main</a></button>
     </div>
-</body>
-</html>
+
+@section scripts
+{
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.2/jquery.validate.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+}

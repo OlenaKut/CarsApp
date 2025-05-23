@@ -1,34 +1,23 @@
-﻿@model CarsApp.Web.Models.Car[]
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
-﻿
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Cars</title>
-    <link rel="stylesheet" href="https://unpkg.com/@@picocss/pico@@latest/css/pico.classless.min.css">
-</head>
-<body>
-    <div style="margin: 50px;">
-        <h1>Cars</h1>
-        <ul>
-            @foreach(var car in Model)
+﻿@{
+    ViewBag.Title = "Cars";
+}
+<div>
+    <h1 class="mb-4 text-primary">Cars</h1>
+        <ol>
+            @foreach(var car in Model.CarItems)
             {
-            <li>@car.Make
+            <li>@car.Color @car.Make @car.Model, @car.Year
 
-                    <a asp-controller="cars" asp-action="edit" asp-route-id="@car.Id">Edit car</a>
-
-
+                <button type="button" class="btn btn-info py-1 m-1"><a asp-controller="cars" asp-action="edit" asp-route-id="@car.Id" class="text-black text-decoration-none">Edit car</a></button>
+                <button type="button" class="btn btn-danger py-1 m-1">
                     <form id="@($"deleteCar{car.Id}")" asp-controller="cars" asp-action="delete" asp-route-id="@car.Id" method="post" style="display: inline;">
-                        <span onclick="if(confirm('Are you sure you want to delete this car?')) { document.getElementById('@($"deleteCar{car.Id}")').submit(); }"
-                              style="cursor: pointer; color: red; text-decoration: underline;">
-                            [Delete]
+                        <span onclick="if(confirm('Are you sure you want to delete this car?')) { document.getElementById('@($"deleteCar{car.Id}")').submit(); }">
+                            Delete
                         </span>
                     </form>
+                </button>
                 </li>
             }
-        </ul>
-        <a asp-controller="cars" asp-action="create">Add a new car</a>
+        </ol>
+    <button type="button" class="btn btn-primary py-1 m-1"> <a asp-controller="cars" asp-action="create" class="text-white text-decoration-none">Add a new car</a></button>
     </div>
-</body>
-</html>

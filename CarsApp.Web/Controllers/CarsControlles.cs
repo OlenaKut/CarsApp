@@ -1,18 +1,34 @@
 ﻿using CarsApp.Web.Models;
 using CarsApp.Web.Services;
 using Microsoft.AspNetCore.Mvc;
+using CarsApp.Web.Views.Cars;
 
 namespace CarsApp.Web.Controllers
 {
-    public class CarsController : Controller
+    public class CarsController(CarService carService, ILogger<CarsController> logger) : Controller
     {
-        static CarService carService = new CarService();
 
         [HttpGet("")]
         public IActionResult Index()
         {
             var cars = carService.GetAllCars();
-            return View(cars);
+
+            logger.LogInformation("Cars count: {count}", cars.Length);
+
+            var viewModel = new IndexVM
+            {
+                CarItems = cars
+                .Select(c => new IndexVM.CarItemVM
+                {
+                    Id = c.Id,
+                    Make = c.Make,
+                    Model = c.Model,
+                    Year = c.Year,
+                    Color = c.Color
+                })
+                .ToArray()
+            };
+            return View(viewModel);
         }
 
         [HttpGet("create")]
@@ -23,13 +39,22 @@ namespace CarsApp.Web.Controllers
 
 
         [HttpPost("create")]
-        public IActionResult Create(Car car)
+        public IActionResult Create(CreateVM viewModel)
         {
 
             if (!ModelState.IsValid)
                 return View();
 
+            var car = new Car
+            {
+                Make = viewModel.Make,
+                Model = viewModel.Model,
+                Year = int.Parse(viewModel.Year),
+                Color = viewModel.Color
+            };
+
             carService.AddCar(car);
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -46,7 +71,15 @@ namespace CarsApp.Web.Controllers
         public IActionResult Edit(int id)
         {
             var model = carService.GetCarById(id);
-            return View(model);
+
+            var viewModel = new EditVM
+            {
+                Make = model.Make,
+                Model = model.Model,
+                Year = model.Year,
+                Color = model.Color
+            };
+            return View(viewModel);
 
         }
 
@@ -56,7 +89,6 @@ namespace CarsApp.Web.Controllers
             carService.UpdateCar(car);
             return RedirectToAction(nameof(Index));
         }
-
 
 
         [HttpPost("delete/{id}")]
